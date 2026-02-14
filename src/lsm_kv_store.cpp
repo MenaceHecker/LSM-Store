@@ -6,7 +6,7 @@ void LSMKVStore::put(const std::string& key, const std::string& value) {
 }
 
 // For simplicity, we only check the memtable. In a full implementation, we would also check on-disk structures.
-std::optional<std::string> LSMKVStore::get(const std::string& key) {
+lsm::optional<std::string> LSMKVStore::get(const std::string& key) {
     return mem_.get(key);
 }
 

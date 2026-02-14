@@ -4,9 +4,9 @@ void Memtable::put(const std::string& key, const std::string& value) {
     table_[key] = value;
 }
 
-std::optional<std::string> Memtable::get(const std::string& key) const {
+lsm::optional<std::string> Memtable::get(const std::string& key) const {
     auto it = table_.find(key);
-    if (it == table_.end()) return std::nullopt;
+    if (it == table_.end()) return lsm::nullopt;
     return it->second;
 }
 
