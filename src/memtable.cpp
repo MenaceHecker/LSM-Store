@@ -10,6 +10,10 @@ lsm::optional<std::string> Memtable::get(const std::string& key) const {
     return it->second;
 }
 
+bool Memtable::contains(const std::string& key) const {
+    return table_.find(key) != table_.end();
+}
+
 void Memtable::del(const std::string& key) {
     table_[key] = lsm::nullopt;
 }
@@ -29,4 +33,8 @@ size_t Memtable::live_size() const {
 bool Memtable::has_tombstone(const std::string& key) const {
     auto it = table_.find(key);
     return it != table_.end() && !it->second.has_value();
+}
+
+const Memtable::EntryMap& Memtable::entries() const {
+    return table_;
 }
