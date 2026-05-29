@@ -10,6 +10,7 @@ public:
     void del(const std::string& key) override;
 
     size_t memtable_size() const;
+    size_t live_size() const;
 
 private:
     Memtable mem_;

@@ -17,3 +17,7 @@ void LSMKVStore::del(const std::string& key) {
 size_t LSMKVStore::memtable_size() const {
     return mem_.size();
 }
+
+size_t LSMKVStore::live_size() const {
+    return mem_.live_size();
+}

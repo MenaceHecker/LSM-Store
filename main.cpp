@@ -66,7 +66,7 @@ int main() {
         }
 
         if (cmd == "size") {
-            std::cout << db.memtable_size() << "\n";
+            std::cout << db.live_size() << "\n";
             continue;
         }
 

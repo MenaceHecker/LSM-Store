@@ -1,6 +1,6 @@
 # LSM Store
 
-A small C++17 key-value store project. The current implementation is phase 1: an in-memory memtable wrapped by an `LSMKVStore` facade.
+A small C++17 key-value store project. The current implementation is phase 1: an in-memory memtable wrapped by an `LSMKVStore` facade. Deletes are represented with tombstones so future disk-backed SSTables can preserve delete semantics.
 
 ## Build
 
@@ -40,7 +40,6 @@ quit
 
 ## Next Steps
 
-- Add tombstones so deletes remain correct after values are flushed to disk.
 - Add a size threshold that rotates the active memtable into an immutable memtable.
 - Flush immutable memtables into a simple sorted SSTable format.
 - Load existing SSTables on startup and search newest-to-oldest on reads.
