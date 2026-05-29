@@ -6,13 +6,17 @@
 
 class Memtable {
 public:
+    using EntryMap = std::map<std::string, lsm::optional<std::string>>;
+
     void put(const std::string& key, const std::string& value);
     lsm::optional<std::string> get(const std::string& key) const;
+    bool contains(const std::string& key) const;
     void del(const std::string& key);
     size_t size() const;
     size_t live_size() const;
     bool has_tombstone(const std::string& key) const;
+    const EntryMap& entries() const;
 
 private:
-    std::map<std::string, lsm::optional<std::string>> table_;
+    EntryMap table_;
 };
