@@ -16,12 +16,14 @@ int main() {
 
     expect(m.size() == 0, "initial size is 0");
     expect(m.live_size() == 0, "initial live size is 0");
+    expect(!m.contains("missing"), "missing key is not contained");
     expect(!m.get("missing").has_value(), "missing key returns nullopt");
 
     m.put("a", "1");
     m.put("b", "2");
     expect(m.size() == 2, "size after puts");
     expect(m.live_size() == 2, "live size after puts");
+    expect(m.contains("a"), "put key is contained");
 
     auto a = m.get("a");
     expect(a.has_value() && *a == "1", "get(a) == 1");
@@ -33,6 +35,7 @@ int main() {
 
     m.del("a");
     expect(!m.get("a").has_value(), "deleted key not found");
+    expect(m.contains("a"), "deleted key is still contained as tombstone");
     expect(m.size() == 2, "delete keeps tombstone record");
     expect(m.live_size() == 1, "live size after delete");
     expect(m.has_tombstone("a"), "deleted key has tombstone");
