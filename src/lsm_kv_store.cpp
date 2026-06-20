@@ -4,7 +4,7 @@
 LSMKVStore::LSMKVStore(size_t memtable_flush_threshold)
     : memtable_flush_threshold_(memtable_flush_threshold) {}
 
-// LSMKVStore implementation
+// LSMKVStore basic implementation
 void LSMKVStore::put(const std::string& key, const std::string& value) {
     mem_.put(key, value);
     rotate_memtable_if_needed();
